@@ -3,7 +3,6 @@ package com.os.mobile.cardioplugin;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.os.Parcelable;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -32,8 +31,6 @@ public class CardIoPlugin extends CordovaPlugin {
     private static final int REQUEST_PERMISSION = 100;
 
     private CallbackContext callbackContext;
-
-    private CardIoActivityLifecycleCallbacks mCurrentActivityCallback = null;
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -85,7 +82,6 @@ public class CardIoPlugin extends CordovaPlugin {
                 scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_POSTAL_CODE, requirePostalCode); // default: false
                 // scanIntent.putExtra(CardIOActivity.EXTRA_SUPPRESS_MANUAL_ENTRY, true);
                 // scanIntent.putExtra(CardIOActivity.EXTRA_KEEP_APPLICATION_THEME, true);
-                observeActivityLifecycle();
                 this.cordova.startActivityForResult(this, scanIntent, CARDIO_PLUGIN_SCAN_CARD_REQUEST_CODE);
                 return true;
             } catch (JSONException e) {
@@ -98,23 +94,11 @@ public class CardIoPlugin extends CordovaPlugin {
         }
     }
 
-    private void observeActivityLifecycle() {
-        if (mCurrentActivityCallback != null) {
-            this.cordova.getActivity().getApplication().unregisterActivityLifecycleCallbacks(
-                    mCurrentActivityCallback
-            );
-        }
-        mCurrentActivityCallback = new CardIoActivityLifecycleCallbacks();
-        this.cordova.getActivity().getApplication().registerActivityLifecycleCallbacks(
-                mCurrentActivityCallback
-        );
-    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
         if (requestCode == CARDIO_PLUGIN_SCAN_CARD_REQUEST_CODE) {
-            if(resultCode == CardIOActivity.RESULT_ENTRY_CANCELED || resultCode == CardIOActivity.RESULT_CANCELED) {
+            if(resultCode == CardIOActivity.RESULT_CANCELED) {
                 respondError(ERROR_USER_CANCEL, "Cancelled by user.");
             }
             if (resultCode == CardIOActivity.RESULT_CARD_INFO && intent != null && intent.hasExtra(CardIOActivity.EXTRA_SCAN_RESULT)) {
