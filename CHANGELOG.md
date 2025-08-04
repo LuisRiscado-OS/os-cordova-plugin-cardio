@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.1.4]
+### Features
+- Android - Support predictive back animations for Android 13 and above (https://outsystemsrd.atlassian.net/browse/RMET-4337)
+
 ## [1.1.3]
 ### Fixes
 - Android - Support 16KB page size (https://outsystemsrd.atlassian.net/browse/RMET-3602)
