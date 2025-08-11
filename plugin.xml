@@ -28,7 +28,7 @@
             </feature>
         </config-file>
         <source-file src="src/android/CardIoPlugin.java" target-dir="src/com/os/mobile/cardioplugin" />
-        <lib-file src="src/android/libs/card.io-5.5.1-OS2.aar" />
+        <lib-file src="src/android/libs/card.io-5.5.1-OS3.aar" />
         <framework src="src/android/cardio.gradle" custom="true" type="gradleReference" />
     </platform> <!-- /Android -->
 

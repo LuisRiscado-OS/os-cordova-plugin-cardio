@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Features
 - Android - Support predictive back animations for Android 13 and above (https://outsystemsrd.atlassian.net/browse/RMET-4337)
 
+### Chores
+- Android - Opt-out flag to allow for re-orientation of the scanner screen on large screens for apps targetting Android 16 (https://outsystemsrd.atlassian.net/browse/RMET-4342)
+
 ## [1.1.3]
 ### Fixes
 - Android - Support 16KB page size (https://outsystemsrd.atlassian.net/browse/RMET-3602)
