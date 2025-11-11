@@ -74,6 +74,13 @@ public class CardIoPlugin extends CordovaPlugin {
                 boolean requireExpiry = args.length() >= 1 ? args.getBoolean(0) : false;
                 boolean requireCvv = args.length() >= 2 ? args.getBoolean(1) : false;
                 boolean requirePostalCode = args.length() >= 3 ? args.getBoolean(2) : false;
+                //Begin - Added new configurations
+                boolean suppressManual = args.length() >= 4 ? args.getBoolean(3) : false;
+                boolean requireCardholderName = args.length() >= 5 ? args.getBoolean(4) : false;
+                boolean hideCardIOLogo = args.length() >= 6 ? args.getBoolean(5) : false;
+                boolean useCardIOLogo = args.length() >= 7 ? args.getBoolean(6) : false;
+                String guideColor = args.length() >= 8 ? args.getString(7) : false;
+                //End - Added new configurations
 
                 Intent scanIntent = new Intent(cordova.getActivity(), CardIOActivity.class);
                 // customize these values to suit your needs.
@@ -82,6 +89,13 @@ public class CardIoPlugin extends CordovaPlugin {
                 scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_POSTAL_CODE, requirePostalCode); // default: false
                 // scanIntent.putExtra(CardIOActivity.EXTRA_SUPPRESS_MANUAL_ENTRY, true);
                 // scanIntent.putExtra(CardIOActivity.EXTRA_KEEP_APPLICATION_THEME, true);
+                //Begin - Added new configurations
+                scanIntent.putExtra(CardIOActivity.EXTRA_SUPPRESS_MANUAL_ENTRY, suppressManual); // default: false
+                scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_CARDHOLDER_NAME, requireCardholderName); // default: false
+                scanIntent.putExtra(CardIOActivity.EXTRA_HIDE_CARDIO_LOGO, hideCardIOLogo); // default: false
+                scanIntent.putExtra(CardIOActivity.EXTRA_USE_CARDIO_LOGO, useCardIOLogo); // default: false
+                scanIntent.putExtra(CardIOActivity.EXTRA_GUIDE_COLOR, guideColor); // default: false
+                //End - Added new configurations
                 this.cordova.startActivityForResult(this, scanIntent, CARDIO_PLUGIN_SCAN_CARD_REQUEST_CODE);
                 return true;
             } catch (JSONException e) {

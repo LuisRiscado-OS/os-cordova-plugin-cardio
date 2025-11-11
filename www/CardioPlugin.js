@@ -7,6 +7,7 @@
 function CardioPlugin() {
 }
 
-exports.scanCard = function (successCallback, errorCallback, requireExpiry, requireCvv, requirePostalCode) {
-    cordova.exec(successCallback, errorCallback, "CardioPlugin", "scanCard", [requireExpiry, requireCvv, requirePostalCode]);
+//LR - Added more inputs following the same pattern.
+exports.scanCard = function (successCallback, errorCallback, requireExpiry, requireCvv, requirePostalCode, suppressManual, requireCardholderName, hideCardIOLogo, useCardIOLogo, guideColor) {
+	cordova.exec(successCallback, errorCallback, "CardioPlugin", "scanCard", [requireExpiry, requireCvv, requirePostalCode, suppressManual, requireCardholderName, hideCardIOLogo, useCardIOLogo, guideColor]);
 };
