@@ -79,7 +79,7 @@ public class CardIoPlugin extends CordovaPlugin {
                 boolean requireCardholderName = args.length() >= 5 ? args.getBoolean(4) : false;
                 boolean hideCardIOLogo = args.length() >= 6 ? args.getBoolean(5) : false;
                 boolean useCardIOLogo = args.length() >= 7 ? args.getBoolean(6) : false;
-                String guideColor = args.length() >= 8 ? args.getString(7) : false;
+                //String guideColor = args.length() >= 8 ? args.getString(7) : "#00FF00";
                 //End - Added new configurations
 
                 Intent scanIntent = new Intent(cordova.getActivity(), CardIOActivity.class);
@@ -94,7 +94,7 @@ public class CardIoPlugin extends CordovaPlugin {
                 scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_CARDHOLDER_NAME, requireCardholderName); // default: false
                 scanIntent.putExtra(CardIOActivity.EXTRA_HIDE_CARDIO_LOGO, hideCardIOLogo); // default: false
                 scanIntent.putExtra(CardIOActivity.EXTRA_USE_CARDIO_LOGO, useCardIOLogo); // default: false
-                scanIntent.putExtra(CardIOActivity.EXTRA_GUIDE_COLOR, guideColor); // default: false
+                //scanIntent.putExtra(CardIOActivity.EXTRA_GUIDE_COLOR, guideColor); // default: false
                 //End - Added new configurations
                 this.cordova.startActivityForResult(this, scanIntent, CARDIO_PLUGIN_SCAN_CARD_REQUEST_CODE);
                 return true;
