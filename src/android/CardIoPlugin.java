@@ -158,7 +158,7 @@ public class CardIoPlugin extends CordovaPlugin {
             respondSuccess(jsonObject);
 
         } catch (JSONException e) {
-
+            respondError(3, e.getMessage());
         }
     }
 
